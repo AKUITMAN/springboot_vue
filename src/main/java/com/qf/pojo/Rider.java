@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "rider")
+@SuppressWarnings("all")
 public class Rider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

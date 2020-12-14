@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "order")
+@SuppressWarnings("all")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
