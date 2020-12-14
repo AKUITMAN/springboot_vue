@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @Service
+@SuppressWarnings("all")
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
