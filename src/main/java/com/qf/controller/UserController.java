@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
-    @RequestMapping("sendMail")
+    @RequestMapping("/sendMail")
     public BaseResponse sendMail(String email){
         return userService.sendMail(email);
 

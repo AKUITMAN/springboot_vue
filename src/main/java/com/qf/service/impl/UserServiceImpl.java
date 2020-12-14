@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
+@SuppressWarnings("all")
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;

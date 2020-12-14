@@ -18,10 +18,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -84,6 +80,7 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>3.7.110.ALL</version>
         </dependency>
+
     </dependencies>
 
 </project>
