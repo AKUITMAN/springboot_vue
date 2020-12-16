@@ -12,8 +12,8 @@ spring:
     generate-ddl: true
   mail:
     host: smtp.qq.com
-    username: 2438435581@qq.com
-    password: tamzgccbbogxeaeh
+    username: 2464754760@qq.com
+    password: qwmhvsbmqwgrdifa
     properties:
       mail:
         smtp:

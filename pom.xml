@@ -80,6 +80,11 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>3.7.110.ALL</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
 
     </dependencies>
 

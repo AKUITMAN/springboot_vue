@@ -17,9 +17,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
-    @RequestMapping("/sendMail")
-    public BaseResponse sendMail(String email){
-        return userService.sendMail(email);
+    @RequestMapping(value = "/sendMail",method = RequestMethod.POST)
+    public BaseResponse sendMail(@RequestBody  Map map){
+        return userService.sendMail(map.get("email").toString());
 
     }
     @RequestMapping(value = "/registry",method = RequestMethod.POST)
@@ -29,5 +29,10 @@ public class UserController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public BaseResponse login(@RequestBody UserReq user){
         return userService.login(user);
+    }
+
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
+    public BaseResponse updatePassword(@RequestBody User user){
+        return userService.updatePassword(user);
     }
 }

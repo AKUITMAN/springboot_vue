@@ -18,7 +18,6 @@ import java.util.Random;
 import java.util.UUID;
 
 @Service
-@SuppressWarnings("all")
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom(from);
             simpleMailMessage.setTo(email);
-            simpleMailMessage.setSubject("12306中国铁路验证码");
+            simpleMailMessage.setSubject("12306验证码");
             simpleMailMessage.setText(code.toString());
             javaMailSender.send(simpleMailMessage);
             //发送成功后，将验证码存入redis,redis用key与value进行存储
@@ -125,6 +124,25 @@ public class UserServiceImpl implements UserService {
         }
         baseResponse.setCode(204);
         baseResponse.setMessage("密码或账号错误");
+        return baseResponse;
+    }
+
+    @Override
+    public BaseResponse updatePassword(User user) {
+        BaseResponse baseResponse = new BaseResponse();
+        User user1=userRepository.findByUserName(user.getUserName());
+        if (user1.getIdCard().equals(user.getIdCard())&&user.getIdCard()!=null){
+            //int id=user1.getId();
+            //String password=user.getPassword();
+            user1.setPassword(user.getPassword());
+            userRepository.saveAndFlush(user1);
+            //int res=userMapper.updatePassword(id,password);
+                baseResponse.setCode(200);
+                baseResponse.setMessage("修改成功");
+                return baseResponse;
+        }
+        baseResponse.setCode(202);
+        baseResponse.setMessage("请填写正确的身份证号");
         return baseResponse;
     }
 }

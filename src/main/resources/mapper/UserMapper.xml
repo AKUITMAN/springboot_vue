@@ -20,4 +20,7 @@
         <include refid="basesql"></include>
         from user where email=#{email}
     </select>
+    <update id="updatePassword" parameterType="user">
+        update user set password=#{password} where id=#{id}
+    </update>
 </mapper>

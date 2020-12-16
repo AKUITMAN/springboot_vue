@@ -10,4 +10,6 @@ public interface UserService {
     BaseResponse registry(UserReq userReq);
 
     BaseResponse login(UserReq user);
+
+    BaseResponse updatePassword(User user);
 }
