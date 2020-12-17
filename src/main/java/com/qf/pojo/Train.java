@@ -29,4 +29,6 @@ public class Train {
     private Integer hardSeat;
 
     private Integer sleeper;
+
+    private String last;
 }

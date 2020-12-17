@@ -4,11 +4,9 @@ import com.qf.commom.BaseResponse;
 import com.qf.pojo.Train;
 import com.qf.service.TrainService;
 import com.qf.service.impl.AddressServiceImpl;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -18,14 +16,16 @@ public class TrainController {
 
     @Autowired
     TrainService service;
-    @RequestMapping(value = "/findAll",method = RequestMethod.GET)
-    public BaseResponse findAll(){
-        return service.findAll();
+    @RequestMapping(value = "/findAll/{page}/{size}",method = RequestMethod.GET)
+    //@RequiresPermissions(value = {"findAll"})
+    public BaseResponse findAll(@PathVariable("page")Integer page, @PathVariable("size")Integer size){
+        return service.findAll(page,size);
     }
     @RequestMapping(value = "/findById",method = RequestMethod.POST)
     public BaseResponse findById(@RequestBody Map map){
         return service.findById((Integer)map.get("id"));
     }
+    @RequiresPermissions(value = {"deleteById"})
     @RequestMapping(value = "deleteById",method = RequestMethod.POST)
     public BaseResponse deleteById(@RequestBody Map map){
         return service.deleteById((Integer)map.get("id"));

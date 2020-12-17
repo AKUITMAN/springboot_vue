@@ -9,4 +9,6 @@ public interface UserMapper {
     User findByEmail(String email);
 
     Integer updatePassword(Integer id,String password);
+
+    int deleteByUserName(@Param("id") Integer id);
 }

@@ -4,6 +4,7 @@ import com.qf.commom.BaseResponse;
 import com.qf.dao.UserMapper;
 import com.qf.dao.UserRepository;
 import com.qf.pojo.User;
+import com.qf.pojo.req.UserList;
 import com.qf.pojo.req.UserReq;
 import com.qf.service.UserService;
 import com.qf.utils.RedisUtils;
@@ -14,6 +15,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -144,5 +147,58 @@ public class UserServiceImpl implements UserService {
         baseResponse.setCode(202);
         baseResponse.setMessage("请填写正确的身份证号");
         return baseResponse;
+    }
+
+    @Override
+    public BaseResponse findAll() {
+        BaseResponse baseResponse = new BaseResponse();
+        List<User> all = userRepository.findAll();
+        List<UserList> userlist=new ArrayList<>();
+        for (User user:all
+             ) {
+            UserList userList = new UserList();
+            userList.setEmail(user.getEmail());
+            userList.setIdCard(user.getIdCard());
+            userList.setUserName(user.getUserName());
+            userList.setPassword(user.getPassword());
+            userList.setId(user.getId());
+            if (user.getGender()==1){
+
+                userList.setGender("男");
+            }else if (user.getGender()==0){
+                userList.setGender("女");
+            }
+            if (user.getLevel()==0){
+                userList.setLevel("成人");
+            }else if (user.getLevel()==1){
+                userList.setLevel("学生");
+            }
+            userlist.add(userList);
+
+        }
+        if (all!=null){
+            baseResponse.setData(userlist);
+            baseResponse.setCode(200);
+            baseResponse.setMessage("查询成功");
+            return baseResponse;
+        }
+        baseResponse.setCode(201);
+        baseResponse.setMessage("查询失败");
+        return baseResponse;
+    }
+
+    @Override
+    public BaseResponse deleteByUserName(Integer id) {
+        BaseResponse baseResponse = new BaseResponse();
+        int res=userMapper.deleteByUserName(id);
+        if (res==1){
+            baseResponse.setCode(200);
+            baseResponse.setMessage("删除成功");
+            return baseResponse;
+        }else {
+            baseResponse.setCode(201);
+            baseResponse.setMessage("删除失败");
+            return baseResponse;
+        }
     }
 }

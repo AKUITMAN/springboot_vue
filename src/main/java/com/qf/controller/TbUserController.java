@@ -37,7 +37,7 @@ public class TbUserController {
             return baseResult;
         }else {
             baseResult.setCode(201);
-            baseResult.setMessage("登陆失败 ");
+            baseResult.setMessage("登陆失败");
             return baseResult;
         }
     }

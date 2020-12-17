@@ -12,4 +12,8 @@ public interface UserService {
     BaseResponse login(UserReq user);
 
     BaseResponse updatePassword(User user);
+
+    BaseResponse findAll();
+
+    BaseResponse deleteByUserName(Integer id);
 }
