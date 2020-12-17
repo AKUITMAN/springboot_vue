@@ -5,6 +5,8 @@ import com.qf.dao.TrainRepository;
 import com.qf.pojo.Train;
 import com.qf.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +19,14 @@ public class TrainServiceImpl implements TrainService {
     TrainRepository repository;
 
     @Override
-    public BaseResponse findAll() {
+    public BaseResponse findAll(Integer page, Integer size) {
+        PageRequest pageRequest = new PageRequest(page - 1, size);
+        Page<Train> all = repository.findAll(pageRequest);
+        //设置 返回参数
         BaseResponse baseResponse = new BaseResponse();
-        List<Train> all = repository.findAll();
-        baseResponse.setData(all);
+        //List<Train> all = repository.findAll();
+        baseResponse.setData(all.getContent());
+        baseResponse.setTotal(all.getTotalElements());
         baseResponse.setCode(200);
         baseResponse.setMessage("查询成功");
         return baseResponse;

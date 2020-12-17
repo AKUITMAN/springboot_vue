@@ -9,4 +9,6 @@ public class BaseResponse {
     private Object data;
 
     private String message;
+
+    private Long total;
 }

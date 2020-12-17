@@ -4,11 +4,9 @@ import com.qf.commom.BaseResponse;
 import com.qf.pojo.User;
 import com.qf.pojo.req.UserReq;
 import com.qf.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -34,5 +32,17 @@ public class UserController {
     @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
     public BaseResponse updatePassword(@RequestBody User user){
         return userService.updatePassword(user);
+    }
+    @RequestMapping(value = "/findAll",method = RequestMethod.GET)
+    @RequiresPermissions(value = {"findAll"})
+    public BaseResponse findAll(){
+        return userService.findAll();
+    }
+    @RequestMapping(value = "deleteByuserName",method =RequestMethod.POST)
+    @RequiresPermissions(value = {"deleteByUserName"})
+    public BaseResponse deleteByUserName(@RequestBody Map map){
+        Integer id= (Integer) map.get("id");
+        System.out.println(id);
+        return userService.deleteByUserName(id);
     }
 }
