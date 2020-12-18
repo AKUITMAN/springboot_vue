@@ -2,8 +2,9 @@ package com.qf.dao;
 
 import com.qf.pojo.TbUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface TbUserMapper {
-    public TbUser findByUserName(String username);
+    TbUser findByUserName(@Param("username") String username);
 }
