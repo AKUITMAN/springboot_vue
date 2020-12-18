@@ -15,4 +15,8 @@ public class Address {
 
     @Column(name = "site_name")
     private String siteName;
+
+    private String province;
+
+    private Integer heat;
 }

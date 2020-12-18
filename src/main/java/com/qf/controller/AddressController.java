@@ -35,4 +35,8 @@ public class AddressController {
     public BaseResponse saveOrFlush(@RequestBody Address address){
         return service.saveOrFlush(address);
     }
+    @RequestMapping(value = "/findMap",method = RequestMethod.GET)
+    public BaseResponse findMap(){
+        return service.findMap();
+    }
 }

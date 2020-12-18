@@ -10,4 +10,6 @@ public interface AddressService {
     BaseResponse findById(Integer id);
     BaseResponse deleteById(Integer id);
     BaseResponse saveOrFlush(Address address);
+
+    BaseResponse findMap();
 }
