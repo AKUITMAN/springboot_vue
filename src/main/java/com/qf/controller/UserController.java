@@ -34,12 +34,12 @@ public class UserController {
         return userService.updatePassword(user);
     }
     @RequestMapping(value = "/findAll",method = RequestMethod.GET)
-    @RequiresPermissions(value = {"findAll"})
+    @RequiresPermissions(value = {"/user/findAll"})
     public BaseResponse findAll(){
         return userService.findAll();
     }
     @RequestMapping(value = "deleteByuserName",method =RequestMethod.POST)
-    @RequiresPermissions(value = {"deleteByUserName"})
+    @RequiresPermissions(value = {"/user/deleteByUserName"})
     public BaseResponse deleteByUserName(@RequestBody Map map){
         Integer id= (Integer) map.get("id");
         System.out.println(id);

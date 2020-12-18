@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
             //密码比对通过，放行，将用户信息存入到redis中，设置token值
             //生成用户唯一标识符
             UUID uuid=UUID.randomUUID();
-            redisUtils.set(uuid.toString(),user);
+            redisUtils.set(uuid.toString(),user.getId());
             baseResponse.setCode(200);
             baseResponse.setData(uuid.toString());
             baseResponse.setMessage("登陆成功");
