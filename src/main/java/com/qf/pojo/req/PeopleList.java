@@ -8,7 +8,7 @@ public class PeopleList {
 
     private String riderName;
 
-    private Integer idCard;
+    private long idCard;
 
     private String gender;
 

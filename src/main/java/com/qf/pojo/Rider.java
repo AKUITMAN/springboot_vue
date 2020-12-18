@@ -17,7 +17,7 @@ public class Rider {
     private String riderName;
 
     @Column(name = "id_card")
-    private Integer idCard;
+    private long idCard;
 
     private Integer gender;
 

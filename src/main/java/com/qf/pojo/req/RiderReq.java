@@ -9,7 +9,7 @@ public class RiderReq {
 
     private String riderName;
 
-    private Integer idCard;
+    private long idCard;
 
     private Integer gender;
 
