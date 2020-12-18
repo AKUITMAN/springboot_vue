@@ -1,5 +1,6 @@
 package com.qf.pojo;
 
+
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,13 +13,8 @@ public class TbUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer id;
-
     @Column(name = "user_name")
     private String userName;
 
     private String password;
-
-
-
-
 }
