@@ -1,13 +1,19 @@
 package com.qf.service.impl;
 
 import com.qf.commom.BaseResponse;
+import com.qf.dao.RiderMapper;
 import com.qf.dao.RiderRepository;
 import com.qf.pojo.Rider;
 import com.qf.pojo.Train;
+import com.qf.pojo.req.PeopleList;
+import com.qf.pojo.req.RiderReq;
 import com.qf.service.RiderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,11 +23,34 @@ public class RiderServiceImpl implements RiderService {
     @Autowired
     RiderRepository repository;
 
+    @Autowired
+    RiderMapper riderMapper;
+
     @Override
     public BaseResponse findAll() {
-        List all = repository.findAll();
+        List<RiderReq> all = riderMapper.findAll();
+        List<PeopleList> peopleList=new ArrayList<>();
+        for (RiderReq riderReq:all
+             ) {
+            PeopleList peopleList1 = new PeopleList();
+            peopleList1.setId(riderReq.getId());
+            peopleList1.setIdCard(riderReq.getIdCard());
+            peopleList1.setRiderName(riderReq.getRiderName());
+            peopleList1.setUserName(riderReq.getUserName());
+            if (riderReq.getGender()==1){
+                peopleList1.setGender("男");
+            }else if (riderReq.getGender()==0){
+                peopleList1.setGender("女");
+            }if (riderReq.getRole().equals("1")){
+                peopleList1.setRole("成人");
+            }else if (riderReq.getRole().equals("0")){
+                peopleList1.setRole("学生");
+            }
+            peopleList.add(peopleList1);
+
+        }
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setData(all);
+        baseResponse.setData(peopleList);
         baseResponse.setCode(200);
         baseResponse.setMessage("查询成功");
         return baseResponse;
