@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
         String userName=user.getUserName();
         User user1=userRepository.findByUserName(userName);
         //进行密码的比对
-        if (user.getPassword()!=null&&user.getPassword().equals(user1.getPassword())){
+        if (user1!=null&&user.getPassword()!=null&&user.getPassword().equals(user1.getPassword())){
             //密码比对通过，放行，将用户信息存入到redis中，设置token值
             //生成用户唯一标识符
             UUID uuid=UUID.randomUUID();
