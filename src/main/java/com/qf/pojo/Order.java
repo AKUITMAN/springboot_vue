@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "12306_order")
+@Table(name = "order_12306")
 @SuppressWarnings("all")
 public class Order {
     @Id
@@ -29,4 +29,13 @@ public class Order {
 
     @Column(name = "time")
     private String time;
+
+    @Column(name = "put_day")
+    private String putDay;
+
+    @Column(name = "seatid")
+    private Integer seatId;
+
+    @Column(name = "price_id")
+    private Integer priceId;
 }

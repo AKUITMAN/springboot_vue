@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.AdminOrderMapper">
+    <select id="findAll" resultType="com.qf.pojo.req.OrderReq">
+        SELECT o.id as id,
+        u.user_name as userName,
+        a.site_name as siteFromName,
+        c.site_name as siteToName,
+        r.rider_name as riderName,
+        o.time as time,
+        o.put_day as putDay,
+        s.seat_type as seatName,
+        p.price as price
+        FROM
+        order_12306 o,user u,address a,(SELECT * FROM address) c,rider r,seatprice s,price p
+        WHERE
+        o.uid=u.id
+        and
+        o.address_from=a.id
+        and
+        o.address_to=c.id
+        and
+        o.rider_id=r.id
+        and
+        o.seatid=s.id
+        and
+        o.price_id=p.id;
+    </select>
+</mapper>
