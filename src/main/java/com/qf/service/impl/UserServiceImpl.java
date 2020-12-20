@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
             UUID uuid=UUID.randomUUID();
             redisUtils.set(uuid.toString(),user.getId());
             baseResponse.setCode(200);
-            baseResponse.setData(uuid.toString());
+            baseResponse.setData(user1.getId());
             baseResponse.setMessage("登陆成功");
             return baseResponse;
         }
