@@ -9,4 +9,5 @@ public interface RiderService{
     BaseResponse findById(Integer id);
     BaseResponse deleteById(Integer id);
     BaseResponse saveOrFlush(Rider rider);
+    BaseResponse findByUid(Integer userId);
 }

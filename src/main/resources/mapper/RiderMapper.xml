@@ -13,4 +13,10 @@
         WHERE
         r.user_id=u.id
     </select>
+    <select id="findByUid" resultType="com.qf.pojo.Rider">
+       SELECT id,rider_name as riderName,id_card as idCard,gender,role,user_id as userId FROM rider WHERE user_id=#{userId}
+    </select>
+    <select id="findById" resultType="com.qf.pojo.Rider">
+        select id,rider_name as riderName,id_card as idCard,gender,role,user_id as userId FROM rider WHERE id=#{id}
+    </select>
 </mapper>

@@ -32,4 +32,9 @@ public class RiderController {
     public BaseResponse saveOrFlush(@RequestBody Rider rider){
         return service.saveOrFlush(rider);
     }
+    @RequestMapping(value = "/findByUid",method = RequestMethod.POST)
+    public BaseResponse findByUid(@RequestBody Map map){
+        //int res= (int) map.get("userId");
+        return service.findByUid((Integer)map.get("userId"));
+    }
 }
